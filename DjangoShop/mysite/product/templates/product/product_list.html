@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+
+
+{% block 'header' %}
+<nav style="top: 0;" class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mx-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link about-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-info" href="{% url 'product:cart' %}">Cart</a>
+          </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+{% endblock %}
+
+{% block 'content' %}
+<div class="container mt-5">
+    <div class="row">
+        <h1 class="mt-5 products-title">All Products</h1>
+        <div class="row mt-5 products-items">
+            {% for product in object_list %}
+            <div class="col-sm-4">
+                <div class="card">
+                    <img src="{{ product.image.url }}" style="height: 200px; object-fit: contain;" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.title }}</h5>
+                        <p>{{ product.description | slice:"100" }}...</p>
+                        {% if product.discount_price %}
+                        <p><strong style="font-size: 22pt; margin-right: 8px;">${{ product.price }}</strong><s class="text-muted">${{ product.discount_price }}</s></p>
+                        {% else %}
+                        <p><strong style="font-size: 22pt; margin-right: 8px;">${{ product.price }}</strong></p>
+                        {% endif %}
+                        <a class="btn btn-primary px-5 py-3 float-right" href="{{ product.get_absolute_url }}">Buy</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+</div>
+
+{% endblock %}

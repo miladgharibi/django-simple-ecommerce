@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+
+    <!-- Import Bootstrap CSS File -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>{% block 'title' %}{% endblock %}</title>
+</head>
+<body>
+    {% block 'header' %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mx-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'core:home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link about-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'core:home' %}">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-info" href="{% url 'product:cart' %}">Cart</a>
+              </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+        <header class="header">
+            <div class="header-image">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="1440" height="560" preserveAspectRatio="none" viewBox="0 0 1440 560">
+                    <g mask="url(&quot;#SvgjsMask1140&quot;)" fill="none">
+                        <rect width="1440" height="560" x="0" y="0" fill="url(#SvgjsLinearGradient1141)"></rect>
+                        <path d="M1440 0L1405.07 0L1440 82.23z" fill="rgba(255, 255, 255, .1)"></path>
+                        <path d="M1405.07 0L1440 82.23L1440 114.76L826.9399999999999 0z" fill="rgba(255, 255, 255, .075)"></path>
+                        <path d="M826.94 0L1440 114.76L1440 234.95L650.21 0z" fill="rgba(255, 255, 255, .05)"></path>
+                        <path d="M650.21 0L1440 234.95L1440 244.25L532.48 0z" fill="rgba(255, 255, 255, .025)"></path>
+                        <path d="M0 560L628.11 560L0 437.21z" fill="rgba(0, 0, 0, .1)"></path>
+                        <path d="M0 437.21L628.11 560L976.55 560L0 362.4z" fill="rgba(0, 0, 0, .075)"></path>
+                        <path d="M0 362.4L976.55 560L1263.8899999999999 560L0 147.65999999999997z" fill="rgba(0, 0, 0, .05)"></path>
+                        <path d="M0 147.65999999999997L1263.8899999999999 560L1343.62 560L0 143.12999999999997z" fill="rgba(0, 0, 0, .025)"></path>
+                    </g>
+                    <defs>
+                        <mask id="SvgjsMask1140">
+                            <rect width="1440" height="560" fill="#ffffff"></rect>
+                        </mask>
+                        <linearGradient x1="15.28%" y1="-39.29%" x2="84.72%" y2="139.29%" gradientUnits="userSpaceOnUse" id="SvgjsLinearGradient1141">
+                            <stop stop-color="#0e2a47" offset="0"></stop>
+                            <stop stop-color="rgba(0, 158, 129, 1)" offset="1"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1 class="display-4 text-light text-center header-text"></h1>
+            <a class="btn btn-primary px-4 py-3 header-btn" href="#">Shop Now</a>
+    </header>   
+    {% endblock %}
+    {% block 'content' %}{% endblock %}
+    
+    {% block 'footer' %}
+
+    <footer class="bg-dark text-light text-center position-absolute w-100 p-5 d-flex justify-content-center align-items-center mt-5">
+        <p>copyright 2021 allright reserved</p>
+    </footer>
+    
+    {% endblock %}
+
+    <!-- Bootstrap REQS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- My Scripts -->
+    <script src="{% static '/js/main.js' %}"></script>
+</body>
+</html>

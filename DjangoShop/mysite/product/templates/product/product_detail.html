@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+
+{% block 'header' %}
+<nav style="top: 0;" class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mx-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link about-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-info" href="{% url 'product:cart' %}">Cart</a>
+          </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+{% endblock %}
+
+{% block 'content' %}
+<div class="container mt-5 mb-5" style="height: 100vh;">
+    <div class="row" style="margin-top: 200px;">
+        <div class="col-sm-12">
+            <img src="{{ product.image.url }}" style="width: 500px; height: 500px; object-fit: contain;" alt="">
+            <h1 class="display-3">{{ product.title }}</h1>
+            <p>{{ product.description }}</p>
+            {% if product.discount_price %}
+            <h1 class="display-4">${{ product.price }} <small class="text-muted" style="font-size: 35px;"><s>${{ product.discount_price }}</s></small></h1>
+            {% else %}
+            <h1 class="display-4">${{ product.price }}</h1>
+            {% endif %}
+            <form method="POST" class="form w-100" action="{% url 'product:add_to_cart' product.pk %}">
+              {% csrf_token %}
+              <button class="btn btn-danger py-4 px-5 float-right">Add to cart</button>
+              <input min="1" name="quantity" type="number" value="1" class="form-control mr-sm-2 w-25 float-right mr-5 text-center" style="height: 80px; font-size: x-large;">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

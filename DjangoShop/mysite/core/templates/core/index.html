@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block 'title' %}Home{% endblock %}
+
+    
+{% block 'content' %}
+
+<div class="container mt-5">
+    <div class="row mb-5 about">
+        <div class="col-sm-12">
+            <h1>About Us</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta voluptatem ipsum sequi minima velit nesciunt obcaecati et explicabo nobis tempore voluptatibus, nam accusantium, at quisquam. Numquam accusantium odit vero dignissimos.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt repellendus temporibus sapiente, architecto odio voluptas odit laudantium facere, veniam sint sit nihil esse est, suscipit corrupti officia quia rem iure?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis possimus illo ullam, cum recusandae nihil aliquid praesentium ipsum voluptas soluta atque in, repellat voluptates ad dolorem sapiente repellendus quia aperiam.
+            </p>
+        </div>
+    </div><hr>
+
+    <h1 class="mt-5 products-title">Newest Products</h1>
+    <div class="row mt-5 products-items">
+        {% for product in products %}
+        <div class="col-sm-4">
+            <div class="card">
+                <img src="{{ product.image.url }}" style="height: 200px; object-fit: contain;" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.description | slice:"100" }}...</p>
+                    {% if product.discount_price %}
+                    <p><strong style="font-size: 22pt; margin-right: 8px;">${{ product.price }}</strong><s class="text-muted">${{ product.discount_price }}</s></p>
+                    {% else %}
+                    <p><strong style="font-size: 22pt; margin-right: 8px;">${{ product.price }}</strong></p>
+                    {% endif %}
+                    <a class="btn btn-primary px-5 py-3 float-right" href="{{ product.get_absolute_url }}">Buy</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>        
+
+{% endblock %}
+

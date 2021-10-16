@@ -1,0 +1,107 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block 'title' %}Cart{% endblock %}
+
+{% block 'header' %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mx-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'core:home' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link about-link" href="{% url 'core:home' %}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'core:home' %}">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-info" href="{% url 'product:cart' %}">Cart</a>
+          </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+{% endblock %}
+
+{% block 'content' %}
+
+<div class="containe" style="position: relative; top: 100px;">
+  <div class="row">
+
+    <div class="col-sm-9">
+      <div class="layers">
+        {% for item in item_list %}
+
+        <div class="item">
+          <img src="{{ item.product.image.url }}" alt="item.product.image.filename">
+          <h2>{{ item.product.title }}</h2>
+          <p>{{ item.product.description }}</p>
+          
+          <a class="btn btn-secondary" href="{% url 'product:add_to_cart' item.product.id %}">+</a>
+          <a class="btn btn-secondary" href="{% url 'product:remove_from_cart' item.product.id %}">-</a>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-sm-3 bg-light">
+      <div class="checkoutinfo text-dark p-4">
+        <h3>TOTAL</h3>
+        <hr>
+        <div class="info-total d-flex" style="justify-content: space-between;">
+          <h4>Sub-total</h4>
+          <p>${{ total }}</p>
+        </div>
+        <div class="info-delivery d-flex" style="justify-content: space-between;">
+          <h4>Delivery</h4>
+          <select name="delivery-mode" id="delivery-items">
+            <option value="delivery option one">Mode 1</option>
+            <option value="delivery option two">Mode 2</option>
+          </select>
+        </div>
+        <form action="#" class="form my-5">
+          <input type="text" placeholder="enter the coupon.." class="form-control"><br>
+          <button class="btn btn-success w-100">Checkout</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  body {
+    background-color: rgb(235, 235, 235);
+    overflow-x: hidden;
+  }
+
+  .layers .item {
+    background: #fff;
+    width: 80%;
+    margin: auto;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    padding: 20px;
+  }
+
+  .layers .item img {
+    border-radius: 25px;
+    width: 200px;
+  }
+
+</style>
+
+{% endblock %}
+
+{% block 'footer' %}
+{% endblock %}
