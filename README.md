@@ -11,6 +11,7 @@ pip install -r requirements.txt
 ```
 ## Default Password and username For superuser
 username = admin
+
 password = admin1234
 
 ## Contributing
